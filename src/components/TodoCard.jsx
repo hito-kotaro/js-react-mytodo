@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 import { TiEdit } from 'react-icons/ti';
 import { RiCloseCircleLine } from 'react-icons/ri';
 import { BiUserCircle } from 'react-icons/bi';
@@ -8,10 +9,15 @@ import { CgDetailsMore } from 'react-icons/cg';
 import TodoForm from './TodoForm';
 
 const TodoCard = (props) => {
-  const [edit, setEdit] = useState(false);
   const { todoData, removeTodo, completeTodo, editTodo } = props;
+  const [edit, setEdit] = useState(false);
+  const navigate = useNavigate();
   const onClickEdit = () => {
     setEdit(!edit);
+  };
+
+  const onClickDetail = () => {
+    navigate('test');
   };
 
   return (
@@ -38,7 +44,7 @@ const TodoCard = (props) => {
       <div className=" flex justify-end ">
         <div className="inline-flex  ">
           {/* ここをクリックした時に詳細ページに遷移させる。 */}
-          <CgDetailsMore style={{ fontSize: '32px' }} />
+          <CgDetailsMore onClick={onClickDetail} style={{ fontSize: '32px' }} />
           <TiEdit
             className="ml-2 mr-2"
             onClick={onClickEdit}
