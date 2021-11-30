@@ -2,8 +2,7 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import TodoApp from './TodoApp';
 
-const Router = () => {
-  const msg = 'test';
+function Router() {
   return (
     <Routes>
       <Route exact path="/">
@@ -11,6 +10,6 @@ const Router = () => {
       </Route>
     </Routes>
   );
-};
+}
 
 export default Router;

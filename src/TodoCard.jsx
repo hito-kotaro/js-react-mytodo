@@ -4,6 +4,7 @@ import { TiEdit } from 'react-icons/ti';
 import { RiCloseCircleLine } from 'react-icons/ri';
 import { BiUserCircle } from 'react-icons/bi';
 import { BsCheckCircleFill } from 'react-icons/bs';
+import { CgDetailsMore } from 'react-icons/cg';
 import TodoForm from './TodoForm';
 
 const TodoCard = (props) => {
@@ -40,7 +41,13 @@ const TodoCard = (props) => {
       </div>
       <div className=" flex justify-end ">
         <div className="inline-flex  ">
-          <TiEdit onClick={onClickEdit} style={{ fontSize: '32px' }} />
+          {/* ここをクリックした時に詳細ページに遷移させる。 */}
+          <CgDetailsMore style={{ fontSize: '32px' }} />
+          <TiEdit
+            className="ml-2 mr-2"
+            onClick={onClickEdit}
+            style={{ fontSize: '32px' }}
+          />
           <RiCloseCircleLine
             onClick={() => removeTodo(todoData.id)}
             style={{ fontSize: '32px' }}
