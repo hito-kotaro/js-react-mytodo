@@ -26,11 +26,7 @@ const TodoCard = (props) => {
         <div className="flex ">
           <BiUserCircle style={{ fontSize: '24px' }} />
           {todoData.userId}さん
-          <div
-            className={`ml-auto  ${
-              todoData.completed ? 'visible' : 'invisible'
-            }`}
-          >
+          <div className={`${todoData.completed ? 'visible' : 'invisible'}`}>
             <BsCheckCircleFill style={{ fontSize: '24px', color: 'green' }} />
           </div>
         </div>
