@@ -1,19 +1,14 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
-import TodoList from './TodoList';
-import TodoForm from './TodoForm';
-import TodoEditer from './TodoEditer';
+import { BrowserRouter } from 'react-router-dom';
+import Router from './Router';
 
-function App() {
+const App = () => {
+  const msg = 'test';
   return (
-    <div className="flex justify-center bg-red-200">
-      <div>
-        <TodoForm />
-        <TodoList />
-        <TodoEditer />
-      </div>
-    </div>
+    <BrowserRouter>
+      <Router />
+    </BrowserRouter>
   );
-}
+};
 
 export default App;

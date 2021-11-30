@@ -1,33 +1,70 @@
-import React from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { TiEdit } from 'react-icons/ti';
 import { RiCloseCircleLine } from 'react-icons/ri';
 import { BiUserCircle } from 'react-icons/bi';
 import { BsCheckCircleFill } from 'react-icons/bs';
+import TodoForm from './TodoForm';
 
-const TodoCard = () => {
-  const userId = '土肥さん';
-  const todoTitle = 'お風呂に入る';
-  const visible = 'invisible';
+const TodoCard = (props) => {
+  const [edit, setEdit] = useState(false);
+  const { todoData, removeTodo, completeTodo, editTodo } = props;
+  const onClickEdit = () => {
+    setEdit(!edit);
+  };
+
   return (
-    <div className="m-1 bg-green-100 shadow-lg">
-      <div className="h-20 bg-red-200">
-        <div className="flex bg-blue-100">
+    <div className="mt-5  shadow-lg border-solid border-4 border-light-blue-500">
+      <div
+        role="button"
+        tabIndex={0}
+        className=" z-10"
+        onClick={() => completeTodo(todoData.id)}
+        onKeyDown={() => completeTodo(todoData.id)}
+      >
+        <div className="flex ">
           <BiUserCircle style={{ fontSize: '24px' }} />
-          {userId}
-          <div className={`bg-red-300 ml-auto ${visible}`}>
+          {todoData.userId}さん
+          <div
+            className={`ml-auto  ${
+              todoData.completed ? 'visible' : 'invisible'
+            }`}
+          >
             <BsCheckCircleFill style={{ fontSize: '24px', color: 'green' }} />
           </div>
         </div>
-        <div>{todoTitle}</div>
-      </div>
-      <div className="bg-green-300 flex justify-end ">
-        <div className="inline-flex bg-red-300 ">
-          <TiEdit style={{ fontSize: '32px' }} />
-          <RiCloseCircleLine style={{ fontSize: '32px' }} />
+        <div className="text-xl ">{todoData.title}</div>
+        <div className=" block  max-h-60 text-sm overflow-ellipsis overflow-hidden">
+          {todoData.comment}
         </div>
       </div>
+      <div className=" flex justify-end ">
+        <div className="inline-flex  ">
+          <TiEdit onClick={onClickEdit} style={{ fontSize: '32px' }} />
+          <RiCloseCircleLine
+            onClick={() => removeTodo(todoData.id)}
+            style={{ fontSize: '32px' }}
+          />
+        </div>
+      </div>
+      {edit ? (
+        <TodoForm
+          setEdit={setEdit}
+          editTodo={editTodo}
+          editTodoData={todoData}
+        />
+      ) : (
+        ''
+      )}
     </div>
   );
+};
+
+TodoCard.propTypes = {
+  todoData: PropTypes.shape().isRequired,
+  completeTodo: PropTypes.func.isRequired,
+  removeTodo: PropTypes.func.isRequired,
+  editTodo: PropTypes.func.isRequired,
 };
 
 export default TodoCard;
