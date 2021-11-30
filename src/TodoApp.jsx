@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import axios from 'axios';
 import TodoForm from './TodoForm';
@@ -6,16 +6,35 @@ import TodoCard from './TodoCard';
 
 const TodoApp = () => {
   const [todoList, setTodoList] = useState([]);
-  const msg = 'TodoList';
 
-  // Promiseの使い方を確認してから
-  // const test = axios.get('https://jsonplaceholder.typicode.com/todos');
+  const getJson = async () => {
+    const res = await axios.get('https://jsonplaceholder.typicode.com/todos');
+    const initTodoList = res.data.map((item) => {
+      const initTodo = {
+        userId: item.userId,
+        id: item.id,
+        title: item.title,
+        comment: '',
+        completed: item.completed,
+      };
+      return initTodo;
+    });
+    setTodoList(initTodoList);
+  };
+
+  // 初回のみ実行
+  useEffect(() => {
+    getJson();
+  }, []);
 
   const addTodo = (todo) => {
     if (!todo.title || /^\s*$/.test(todo.title)) {
+      toast.error('Todoが空なので登録できません。');
+
       return;
     }
-    setTodoList([...todoList, todo]);
+    setTodoList([todo, ...todoList]);
+    toast.success('AddTodo!');
   };
 
   const completeTodo = (targetId) => {
@@ -36,7 +55,7 @@ const TodoApp = () => {
 
   const editTodo = (newTodo) => {
     if (!newTodo.title || /^\s*$/.test(newTodo.title)) {
-      alert('Todoが空なので登録できません');
+      toast.error('Todoが空なので登録できません。');
       return;
     }
     const newTodoList = todoList.map((item) => {
@@ -50,7 +69,7 @@ const TodoApp = () => {
   };
   return (
     <div className="flex justify-center">
-      <Toaster position="top-left" reverseOrder={false} />
+      <Toaster position="top-right" reverseOrder={false} />
       <div className=" w-3/4">
         <TodoForm addTodo={addTodo} />
         <div className="my-5  ">
