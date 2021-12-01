@@ -1,6 +1,7 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, Navigate } from 'react-router-dom';
 import { TiEdit } from 'react-icons/ti';
 import { RiCloseCircleLine } from 'react-icons/ri';
 import { BiUserCircle } from 'react-icons/bi';
@@ -39,15 +40,8 @@ const TodoCard = (props) => {
         <div className="text-xl ">{todoData.title}</div>
         <div className=" block  max-h-60 text-sm overflow-ellipsis overflow-hidden">
           {/* {todoData.comment} */}
-
-          <Link
-            to={{
-              pathname: '/test',
-              search: '?sort=name',
-              hash: '#the-hash',
-              state: { fromDashboard: true },
-            }}
-          >
+          <Link to={{ pathname: '/test', state: todoData }}>test</Link>
+          <Link to="/test" state={todoData}>
             test
           </Link>
         </div>
