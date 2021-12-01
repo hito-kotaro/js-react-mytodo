@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { TiEdit } from 'react-icons/ti';
 import { RiCloseCircleLine } from 'react-icons/ri';
 import { BiUserCircle } from 'react-icons/bi';
@@ -38,7 +38,18 @@ const TodoCard = (props) => {
         </div>
         <div className="text-xl ">{todoData.title}</div>
         <div className=" block  max-h-60 text-sm overflow-ellipsis overflow-hidden">
-          {todoData.comment}
+          {/* {todoData.comment} */}
+
+          <Link
+            to={{
+              pathname: '/test',
+              search: '?sort=name',
+              hash: '#the-hash',
+              state: { fromDashboard: true },
+            }}
+          >
+            test
+          </Link>
         </div>
       </div>
       <div className=" flex justify-end ">
