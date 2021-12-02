@@ -28,6 +28,7 @@ const TodoApp = () => {
     getJson();
   }, []);
 
+  // Todoの追加
   const addTodo = (todo) => {
     if (!todo.title || /^\s*$/.test(todo.title)) {
       toast.error('Todoが空なので登録できません。');
@@ -38,6 +39,7 @@ const TodoApp = () => {
     toast.success('AddTodo!');
   };
 
+  // Todoの完了
   const completeTodo = (targetId) => {
     const newTodoList = todoList.map((item) => {
       if (item.id === targetId) {
@@ -49,12 +51,14 @@ const TodoApp = () => {
     setTodoList(newTodoList);
   };
 
+  // Todoの削除
   const removeTodo = (targetId) => {
     const newTodoList = todoList.filter((item) => item.id !== targetId);
     setTodoList(newTodoList);
     toast.success('removeTodo!');
   };
 
+  // Todoの編集
   const editTodo = (newTodo) => {
     if (!newTodo.title || /^\s*$/.test(newTodo.title)) {
       toast.error('Todoが空なので登録できません。');
