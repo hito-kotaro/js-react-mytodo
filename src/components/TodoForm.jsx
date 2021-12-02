@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Uuid from 'react-uuid';
+import dayjs from 'dayjs';
 
 const TodoForm = (props) => {
   const { addTodo, editTodo, editTodoData, setEdit } = props;
@@ -10,11 +11,11 @@ const TodoForm = (props) => {
     editTodoData ? editTodoData.comment : '',
   );
 
-  const inputTodo = (e) => {
+  const onChangeTodo = (e) => {
     setInput(e.target.value);
   };
 
-  const inputCmt = (e) => {
+  const onChangeComment = (e) => {
     setInputComment(e.target.value);
   };
 
@@ -25,6 +26,8 @@ const TodoForm = (props) => {
       id: Uuid(),
       title: input,
       completed: false,
+      registeredDate: dayjs().format('YYYY-MM-DD hh:mm:ss'),
+      updatedDate: '',
     };
 
     addTodo(todoData);
@@ -39,6 +42,7 @@ const TodoForm = (props) => {
       title: input,
       comment: inputComment,
       completed: false,
+      updatedDate: dayjs().format('YYYY-MM-DD hh:mm:ss'),
     };
     editTodo(newTodoData);
     setEdit(false);
@@ -53,13 +57,13 @@ const TodoForm = (props) => {
             <div className=" w-full mt-5 p-1 ">
               <input
                 className="border rounded-none w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                onChange={inputTodo}
+                onChange={onChangeTodo}
                 value={input}
                 type="text"
                 placeholder="InputTodo"
               />
               <textarea
-                onChange={inputCmt}
+                onChange={onChangeComment}
                 value={inputComment}
                 className="h-40 resize-none mt-2 border rounded-none py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-full"
                 placeholder="Input Comment"
@@ -79,7 +83,7 @@ const TodoForm = (props) => {
           <div className="flex bg-gray-200 mt-5 p-1 w-full">
             <input
               className="border rounded-none w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              onChange={inputTodo}
+              onChange={onChangeTodo}
               value={input}
               type="text"
               placeholder="InputTodo"

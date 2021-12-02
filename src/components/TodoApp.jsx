@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import axios from 'axios';
+import Header from './Header';
 import TodoForm from './TodoForm';
 import TodoCard from './TodoCard';
 
@@ -51,6 +52,7 @@ const TodoApp = () => {
   const removeTodo = (targetId) => {
     const newTodoList = todoList.filter((item) => item.id !== targetId);
     setTodoList(newTodoList);
+    toast.success('removeTodo!');
   };
 
   const editTodo = (newTodo) => {
@@ -62,30 +64,36 @@ const TodoApp = () => {
       if (item.id === newTodo.id) {
         item.title = newTodo.title;
         item.comment = newTodo.comment;
+        item.updatedDate = newTodo.updatedDate;
       }
       return item;
     });
     setTodoList(newTodoList);
+    toast.success('EditTodo!');
   };
+
   return (
-    <div className="flex justify-center">
-      <Toaster position="top-right" reverseOrder={false} />
-      <div className=" w-3/4">
-        <TodoForm addTodo={addTodo} />
-        <div className="my-5  ">
-          {todoList.map((todoData) => (
-            <TodoCard
-              key={todoData.id}
-              todoData={todoData}
-              completeTodo={completeTodo}
-              removeTodo={removeTodo}
-              editTodo={editTodo}
-              addTodo={addTodo}
-            />
-          ))}
+    <>
+      <Header />
+      <div className="flex justify-center">
+        <Toaster position="top-right" reverseOrder={false} />
+        <div className=" w-3/4">
+          <TodoForm addTodo={addTodo} />
+          <div className="my-5  ">
+            {todoList.map((todoData) => (
+              <TodoCard
+                key={todoData.id}
+                todoData={todoData}
+                completeTodo={completeTodo}
+                removeTodo={removeTodo}
+                editTodo={editTodo}
+                addTodo={addTodo}
+              />
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
