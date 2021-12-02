@@ -18,7 +18,7 @@ const TodoCard = (props) => {
   };
 
   const onClickDetail = () => {
-    navigate('test');
+    navigate('/detail', { state: { todoData } });
   };
 
   return (
@@ -39,11 +39,7 @@ const TodoCard = (props) => {
         </div>
         <div className="text-xl ">{todoData.title}</div>
         <div className=" block  max-h-60 text-sm overflow-ellipsis overflow-hidden">
-          {/* {todoData.comment} */}
-          <Link to={{ pathname: '/test', state: todoData }}>test</Link>
-          <Link to="/test" state={todoData}>
-            test
-          </Link>
+          {todoData.comment}
         </div>
       </div>
       <div className=" flex justify-end ">

@@ -2,9 +2,8 @@ import React from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 
 const TestPage = () => {
-  console.log(useLocation());
-  const { pathname } = useLocation();
-  console.log(pathname);
+  const { state } = useLocation();
+  console.log(state);
   const msg = 'test';
   return <div>{msg}</div>;
 };
