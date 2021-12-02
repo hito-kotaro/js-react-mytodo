@@ -1,44 +1,11 @@
-# js-react_tailwind-sample
+# js-react-mytodo
 
-react のプロジェクトに ESLint と Prettier とtailwind を導入したサンプル
+react-router-dom axios tailwind などを使って作った css
 
 ## Usage
 
 ```
-$ git clone git@github.com:hito-kotaro/js-react-sample.git
+$ git clone git@github.com:hito-kotaro/js-react-mytodo.git
 $ yarn
 $ yarn start
 ```
-
-## ESLint
-
-### extends
-
-- plugin:react/recommended
-- airbnb
-- prettier
-
-### ecma
-
-- ecmaVersion:12
-- ecmaFeature:jsx
-
-### plugin
-
-- react
-
-### rules
-
-- none
-
-## Prettier
-
-- singleQuote: true
-- trailingComma: all
-  and Default
-
-## VSCode Settings
-
-- eslint.format.enable: false
-- editor.formatOnSave: true
-- editor.defaultFormatter: esbenp.prettier-vscode
