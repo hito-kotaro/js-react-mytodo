@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { BsCheckCircleFill } from 'react-icons/bs';
 import Header from './Header';
 
+// 詳細画面 TodoDataを表示するだけ
 const TodoDetail = () => {
   const { state } = useLocation();
   const { todoData } = state;

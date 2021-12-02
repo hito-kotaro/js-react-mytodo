@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
@@ -9,6 +8,7 @@ import { BsCheckCircleFill } from 'react-icons/bs';
 import { CgDetailsMore } from 'react-icons/cg';
 import TodoForm from './TodoForm';
 
+// 渡されたTodo情報を表示するだけ
 const TodoCard = (props) => {
   const { todoData, removeTodo, completeTodo, editTodo } = props;
   const [edit, setEdit] = useState(false);
@@ -17,6 +17,7 @@ const TodoCard = (props) => {
     setEdit(!edit);
   };
 
+  // 詳細ページに遷移
   const onClickDetail = () => {
     navigate('/detail', { state: { todoData } });
   };
