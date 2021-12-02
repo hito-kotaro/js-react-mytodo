@@ -1,6 +1,6 @@
 # js-react-mytodo
 
-react-router-dom axios tailwind などを使って作った css
+react-router-dom axios tailwind などを使って作ったTodoアプリ
 
 ## Usage
 
