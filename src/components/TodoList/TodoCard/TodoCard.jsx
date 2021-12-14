@@ -6,7 +6,7 @@ import { RiCloseCircleLine } from 'react-icons/ri';
 import { BiUserCircle } from 'react-icons/bi';
 import { BsCheckCircleFill } from 'react-icons/bs';
 import { CgDetailsMore } from 'react-icons/cg';
-import TodoForm from './TodoForm';
+import TodoForm from '../TodoForm/TodoForm';
 
 // 渡されたTodo情報を表示するだけ
 const TodoCard = (props) => {
