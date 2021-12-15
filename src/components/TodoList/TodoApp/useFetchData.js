@@ -1,35 +1,40 @@
 import { useState, useCallback } from 'react';
+import { useRecoilState } from 'recoil';
 import axios from 'axios';
+import { todoListState } from '../../state/todoListState';
 
 const useFetchData = () => {
-  const [fetchTodoList, setFetchTodoList] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [todoList, setTodoList] = useRecoilState(todoListState);
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetch = useCallback(async () => {
-    try {
-      const result = await axios.get(
-        'https://jsonplaceholder.typicode.com/todos',
-      );
+    if (todoList.length === 0) {
+      setIsLoading(true);
+      try {
+        const result = await axios.get(
+          'https://jsonplaceholder.typicode.com/todos',
+        );
 
-      const initTodoList = result.data.map((item) => {
-        const initTodo = {
-          userId: item.userId,
-          id: item.id,
-          title: item.title,
-          comment: '',
-          completed: item.completed,
-        };
-        return initTodo;
-      });
-      setFetchTodoList(initTodoList);
-    } catch (error) {
-      alert('エラーが発生しました');
-    } finally {
-      setIsLoading(false);
+        const initTodoList = result.data.map((item) => {
+          const initTodo = {
+            userId: item.userId,
+            id: item.id,
+            title: item.title,
+            comment: '',
+            completed: item.completed,
+          };
+          return initTodo;
+        });
+        setTodoList(initTodoList);
+      } catch (error) {
+        alert('エラーが発生しました');
+      } finally {
+        setIsLoading(false);
+      }
     }
   }, []);
 
-  return { fetchTodoList, isLoading, fetch };
+  return { isLoading, fetch };
 };
 
 export default useFetchData;

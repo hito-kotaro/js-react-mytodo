@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import toast, { Toaster } from 'react-hot-toast';
 import Uuid from 'react-uuid';
@@ -11,17 +11,12 @@ import { todoListState } from '../../state/todoListState';
 
 const TodoApp = () => {
   const [todoList, setTodoList] = useRecoilState(todoListState);
-  const { fetchTodoList, isLoading, fetch } = useFetchData();
+  const { isLoading, fetch } = useFetchData();
+
   // 初回データ取得
   useEffect(() => {
     fetch();
-    setTodoList(fetchTodoList);
   }, []);
-
-  // // fetchTodoListが更新された時に実行(初回のみ)
-  // useEffect(() => {
-  //   setTodoList(fetchTodoList);
-  // }, [fetchTodoList]);
 
   // Todoの追加
   const addTodo = (todo) => {
@@ -42,6 +37,7 @@ const TodoApp = () => {
           userId: item.userId,
           id: Uuid(),
           title: item.title,
+          comment: item.comment,
           completed: !item.completed,
           registeredDate: item.registeredDate,
           updatedDate: dayjs().format('YYYY-MM-DD hh:mm:ss'),
@@ -62,16 +58,23 @@ const TodoApp = () => {
   };
 
   // Todoの編集
-  const editTodo = (newTodo) => {
-    if (!newTodo.title || /^\s*$/.test(newTodo.title)) {
+  const editTodo = (todo) => {
+    if (!todo.title || /^\s*$/.test(todo.title)) {
       toast.error('Todoが空なので登録できません。');
       return;
     }
     const newTodoList = todoList.map((item) => {
-      if (item.id === newTodo.id) {
-        item.title = newTodo.title;
-        item.comment = newTodo.comment;
-        item.updatedDate = newTodo.updatedDate;
+      if (item.id === todo.id) {
+        const newTodo = {
+          userId: todo.userId,
+          id: Uuid(),
+          title: todo.title,
+          comment: todo.comment,
+          completed: todo.completed,
+          registeredDate: todo.registeredDate,
+          updatedDate: dayjs().format('YYYY-MM-DD hh:mm:ss'),
+        };
+        return newTodo;
       }
       return item;
     });
