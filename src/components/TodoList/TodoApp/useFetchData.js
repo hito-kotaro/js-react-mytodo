@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import { useState, useCallback } from 'react';
 import { useRecoilState } from 'recoil';
 import axios from 'axios';

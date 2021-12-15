@@ -85,7 +85,7 @@ const TodoApp = () => {
   return (
     <>
       {isLoading ? (
-        <p>取得中</p>
+        <p>通信中</p>
       ) : (
         <div>
           <Header />
