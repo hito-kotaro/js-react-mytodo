@@ -1,12 +1,11 @@
 /* eslint-disable no-alert */
 import { useState, useCallback } from 'react';
-import { useRecoilState } from 'recoil';
 import axios from 'axios';
-import { todoListState } from '../store/todoListState';
+import useStateCtl from './useTodoList';
 
 const useFetchData = () => {
-  const [todoList, setTodoList] = useRecoilState(todoListState);
   const [isLoading, setIsLoading] = useState(false);
+  const { todoList, updateTodoList } = useStateCtl();
 
   const fetch = useCallback(async () => {
     if (todoList.length === 0) {
@@ -26,7 +25,7 @@ const useFetchData = () => {
           };
           return initTodo;
         });
-        setTodoList(initTodoList);
+        updateTodoList(initTodoList);
       } catch (error) {
         alert('エラーが発生しました');
       } finally {

@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { useRecoilState } from 'recoil';
 import toast, { Toaster } from 'react-hot-toast';
 import Uuid from 'react-uuid';
 import dayjs from 'dayjs';
@@ -7,11 +6,11 @@ import Header from '../../share/Header';
 import TodoForm from '../TodoForm/TodoForm';
 import TodoCard from '../TodoCard/TodoCard';
 import useFetchData from '../../../hooks/useFetchData';
-import { todoListState } from '../../../store/todoListState';
+import useStateCtl from '../../../hooks/useTodoList';
 
 const TodoApp = () => {
-  const [todoList, setTodoList] = useRecoilState(todoListState);
   const { isLoading, fetch } = useFetchData();
+  const { todoList, updateTodoList } = useStateCtl();
 
   // 初回データ取得
   useEffect(() => {
@@ -25,7 +24,7 @@ const TodoApp = () => {
 
       return;
     }
-    setTodoList([todo, ...todoList]);
+    updateTodoList([todo, ...todoList]);
     toast.success('AddTodo!');
   };
 
@@ -47,13 +46,13 @@ const TodoApp = () => {
       }
       return item;
     });
-    setTodoList(newTodoList);
+    updateTodoList(newTodoList);
   };
 
   // Todoの削除
   const removeTodo = (targetId) => {
     const newTodoList = todoList.filter((item) => item.id !== targetId);
-    setTodoList(newTodoList);
+    updateTodoList(newTodoList);
     toast.success('removeTodo!');
   };
 
@@ -78,7 +77,7 @@ const TodoApp = () => {
       }
       return item;
     });
-    setTodoList(newTodoList);
+    updateTodoList(newTodoList);
     toast.success('EditTodo!');
   };
 
