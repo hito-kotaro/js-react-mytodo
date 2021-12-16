@@ -52,7 +52,7 @@ const TodoForm = (props) => {
 
   return (
     <form onSubmit={editTodoData ? onEditBtn : onAddBtn}>
-      <div className="flex　w-full">
+      <div className="flex w-full">
         {editTodoData ? (
           <div>
             <div className=" w-full mt-5 p-1 ">

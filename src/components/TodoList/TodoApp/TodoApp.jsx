@@ -7,7 +7,7 @@ import Header from '../../share/Header';
 import TodoForm from '../TodoForm/TodoForm';
 import TodoCard from '../TodoCard/TodoCard';
 import useFetchData from './useFetchData';
-import { todoListState } from '../../state/todoListState';
+import { todoListState } from '../../../store/todoListState';
 
 const TodoApp = () => {
   const [todoList, setTodoList] = useRecoilState(todoListState);
