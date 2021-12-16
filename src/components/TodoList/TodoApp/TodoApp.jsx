@@ -6,7 +6,7 @@ import dayjs from 'dayjs';
 import Header from '../../share/Header';
 import TodoForm from '../TodoForm/TodoForm';
 import TodoCard from '../TodoCard/TodoCard';
-import useFetchData from './useFetchData';
+import useFetchData from '../../../hooks/useFetchData';
 import { todoListState } from '../../../store/todoListState';
 
 const TodoApp = () => {

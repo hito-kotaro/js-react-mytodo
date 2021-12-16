@@ -2,7 +2,7 @@
 import { useState, useCallback } from 'react';
 import { useRecoilState } from 'recoil';
 import axios from 'axios';
-import { todoListState } from '../../../store/todoListState';
+import { todoListState } from '../store/todoListState';
 
 const useFetchData = () => {
   const [todoList, setTodoList] = useRecoilState(todoListState);

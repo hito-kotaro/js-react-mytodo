@@ -5,7 +5,7 @@ import dayjs from 'dayjs';
 
 const TodoForm = (props) => {
   const { editTodo, editTodoData, setEdit } = props;
-  const [input, setInput] = useState(editTodoData ? editTodoData.title : '');
+  const [input, setInput] = useState(editTodoData.title);
   const [inputComment, setInputComment] = useState(
     editTodoData ? editTodoData.comment : '',
   );
