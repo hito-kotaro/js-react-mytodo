@@ -6,11 +6,11 @@ import Header from '../../share/Header';
 import TodoForm from '../TodoForm/TodoForm';
 import TodoCard from '../TodoCard/TodoCard';
 import useFetchData from '../../../hooks/useFetchData';
-import useStateCtl from '../../../hooks/useTodoList';
+import useTodoList from '../../../hooks/useTodoList';
 
 const TodoApp = () => {
   const { isLoading, fetch } = useFetchData();
-  const { todoList, updateTodoList } = useStateCtl();
+  const { todoList, updateTodoList } = useTodoList();
 
   // 初回データ取得
   useEffect(() => {

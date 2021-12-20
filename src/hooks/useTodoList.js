@@ -1,7 +1,7 @@
 import { useRecoilState } from 'recoil';
 import { todoListState } from '../store/todoListState';
 
-const useStateCtl = () => {
+const useTodoList = () => {
   const [todoList, setTodoList] = useRecoilState(todoListState);
   const updateTodoList = (initTodoList) => {
     setTodoList(initTodoList);
@@ -10,4 +10,4 @@ const useStateCtl = () => {
   return { todoList, updateTodoList };
 };
 
-export default useStateCtl;
+export default useTodoList;
