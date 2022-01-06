@@ -6,7 +6,7 @@ import { RiCloseCircleLine } from 'react-icons/ri';
 import { BiUserCircle } from 'react-icons/bi';
 import { BsCheckCircleFill } from 'react-icons/bs';
 import { CgDetailsMore } from 'react-icons/cg';
-import TodoForm from './TodoForm';
+import TodoEditForm from '../TodoEditForm/TodoEditForm';
 
 // 渡されたTodo情報を表示するだけ
 const TodoCard = (props) => {
@@ -59,7 +59,7 @@ const TodoCard = (props) => {
         </div>
       </div>
       {edit ? (
-        <TodoForm
+        <TodoEditForm
           setEdit={setEdit}
           editTodo={editTodo}
           editTodoData={todoData}

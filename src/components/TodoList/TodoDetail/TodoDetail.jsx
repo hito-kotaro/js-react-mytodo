@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { BsCheckCircleFill } from 'react-icons/bs';
-import Header from './Header';
+import Header from '../../share/Header';
 
 // 詳細画面 TodoDataを表示するだけ
 const TodoDetail = () => {

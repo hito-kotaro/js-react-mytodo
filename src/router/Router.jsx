@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import TodoApp from '../components/TodoApp';
-import TodoDetail from '../components/TodoDetail';
+import TodoApp from '../components/TodoList/TodoApp/TodoApp';
+import TodoDetail from '../components/TodoList/TodoDetail/TodoDetail';
 
 function Router() {
   return (
